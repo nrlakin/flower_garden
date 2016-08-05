@@ -1,4 +1,6 @@
 var cloud=-1;
+var cloudy=0;
+
 function circle(x,y,diameter){
   ellipse(x,y,diameter,diameter);
 }
@@ -6,13 +8,13 @@ function square(x,y, side) {
   rect(x,y,side,side);
   
 }
-function drawcloud(x){
+function drawcloud(x, y){
   fill(255, 255,255);
-   noStroke();
-   circle(x,100,80);
-   circle(x+50,100,80);
-   circle(x-50,100,80);
-  circle(x,50,80);
+  noStroke();
+  circle(x,y,80);
+  circle(x+50,y,80);
+  circle(x-50,y,80);
+  circle(x,y-50,80);
 }
 
 function drawsunny(){
@@ -95,7 +97,7 @@ function draw() {
   if (cloud>-1){
     cloud=cloud+2;
      drawcloudy();
-  drawcloud (cloud);
+  drawcloud (cloud, cloudy);
   
   }
   
@@ -103,8 +105,9 @@ function draw() {
 
 function mousePressed(){
   cloud=mouseX;
+  cloudy=mouseY;
   drawcloudy();
-   drawcloud (mouseX);
+   drawcloud (mouseX, mouseY);
   
   
 }
